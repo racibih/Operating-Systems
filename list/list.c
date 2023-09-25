@@ -21,7 +21,7 @@ void list_free(list_t *l) {
 }
 
 void list_print(list_t *l) {
-  
+   printf("\nCurrent List: \n");
    node_t* cur_node = (node_t *) malloc(sizeof(node_t));
   cur_node = l->head;
   if(cur_node==NULL){
@@ -34,7 +34,7 @@ void list_print(list_t *l) {
         cur_node = cur_node->next;
     }
  
-    printf("\nCurrent List: \n");
+   
 }
 
 char * listToString(list_t *l) {
@@ -65,16 +65,20 @@ void list_add_to_back(list_t *l, elem value) {
   node_t* new_node = (node_t *) malloc(sizeof(node_t));
   new_node->value = value;
   new_node->next = NULL;
+node_t* last_node = l->head;
 
   if(l->head == NULL){
-    node_t* head = new_node;
+    l->head = new_node;
   }
-    node_t* last_node = l->head;
+    else{
 
-  while(last_node){
+  while(last_node->next){
     last_node = last_node->next;
-  }
-  last_node->next = new_node;
+  }    
+    last_node->next = new_node;
+
+    }  
+
 }
 void list_add_to_front(list_t *l, elem value) {
      node_t* cur_node = (node_t *) malloc(sizeof(node_t));
@@ -91,44 +95,44 @@ void list_add_to_front(list_t *l, elem value) {
 
 }
 void list_add_at_index(list_t *l, elem value, int index) {
-   node_t* old_node = (node_t *) malloc(sizeof(node_t));
-  node_t* head = l->head;
-  node_t* curr_node = l->head;
-  int count = 0;
-  if(head->next==NULL){
-    list_add_to_back(l,value);
-  }
-  while(curr_node){
-    curr_node = curr_node->next;
-    count++;
-    if(count==index){
-      break;
+   node_t* new_node = (node_t *) malloc(sizeof(node_t));
+  new_node->value = value;
+  
+   if (index == 0 || l->head==NULL) {
+        new_node->next = l->head;
+        l->head = new_node;
+        return;
     }
-  }
-    old_node->value= curr_node->value;
-    old_node->next= NULL;
-    curr_node->value=value;
-    curr_node->next= old_node;
+  node_t* cur_node = l->head;
+  int count = 0;
 
+ while(cur_node!=NULL && count<index-1){
+  cur_node = cur_node->next;
+  count++;
+ }
+ new_node->next = cur_node->next;
+ cur_node->next = new_node;
+    
 }
 
 elem list_remove_from_back(list_t *l) { return -1; }
 elem list_remove_from_front(list_t *l) { 
-       node_t* cur_node = (node_t *) malloc(sizeof(node_t));
-        node_t* head = l->head;
-        if(head==NULL){
+       node_t* cur_node = l->head;
+        if(l->head==NULL){
           return;
         }
-        cur_node = head;
-        head = head->next;
-        int removed = cur_node->value;
+        l->head = l->head->next;
+        int removed = cur_node->value; 
         free(cur_node);
-  return removed; }
+  return removed; 
+  
+  }
+
 elem list_remove_at_index(list_t *l, int index) { 
          node_t* cur_node = (node_t *) malloc(sizeof(node_t));
         node_t* temp = l->head;
         node_t* head = l->head;
-        int i;
+        int i=0;
         int val;
         if(index==0){
           head= head->next;
@@ -159,28 +163,33 @@ elem list_remove_at_index(list_t *l, int index) {
 bool list_is_in(list_t *l, elem value) { return false; }
 elem list_get_elem_at(list_t *l, int index) {
 
-  int count = 1;
-  node_t* cur_node = (node_t *) malloc(sizeof(node_t));
-  node_t* head = l->head;
-  if(head->next == NULL){
-    return 0;
-  }
+  int count = 0;
+  int num = 0;
+  node_t* head = (node_t *) malloc(sizeof(node_t));
+  head = l->head;
+ // if(head->next == NULL){
+   // return 0;
+  //}
   
-  node_t* last_node = l->head;
-if(index > list_length(l) || last_node==NULL){
-    return -1;
-  }
+ //cur_node = l->head;
+//if(index > list_length(l)){
+ //   return -1;
+ // }
   
-  while(last_node !=NULL){
-    last_node = last_node->next;
-    count++;
+  while(head !=NULL){
+    
     if(count==index){  
-      break;
+      num = head->value;
+      return num;
     }
+    
+    count++;
+    head = head->next;
   }
-int num = last_node->value;
+
+ 
   
-  return num;
+  return -1;
   }
 int list_get_index_of(list_t *l, elem value) { 
   

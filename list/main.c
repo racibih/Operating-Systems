@@ -7,6 +7,72 @@ int main() {
   printf("Write your Tests for your linked list implementation\n");
   list_t *mylist;
   mylist = list_alloc();
+// my Tests
+ list_add_to_front(mylist, 5);
+  list_add_to_front(mylist, 10);
+  list_add_to_front(mylist, 15);
+   list_add_to_front(mylist, 20);
+  list_add_to_front(mylist, 22);
+  list_add_to_front(mylist, 24);
+    list_add_to_front(mylist, 26);
+  list_add_to_front(mylist, 28);
+  list_add_to_front(mylist, 30);
+    list_add_to_front(mylist, 32);
+  list_add_to_front(mylist, 34);
+  list_add_to_front(mylist, 36);
+  list_print(mylist);
+if(list_length(mylist)==12){
+      printf("Length test passed\n");
+}
+else{
+      printf("Length test failed\n");
+}
+if(list_get_elem_at(mylist,5)==26){
+      printf("list_get_elem_at passed\n");
+}
+list_remove_at_index(mylist,7);
+if(strcmp("36->34->32->30->28->26->24->22->20->15->10->5->NULL",listToString(mylist)) == 0)
+  {
+        printf("list_remove_at_index : FAILED\n");
+  }
+else{
+      printf("list_remove_at_index: PASSED\n");
+}
+if( list_remove_from_front(mylist)==36){
+      printf("list_remove_from_front : PASSED\n");
+}
+else{
+      printf("list_remove_from_front : FAILED\n");
+}
+      list_print(mylist);
+
+list_add_at_index(mylist,100,1);
+if(list_get_elem_at(mylist,1)==100){
+      printf("list_add_at_index : PASSED\n");
+}
+else{
+      printf("list_add_at_index : FAILED\n");
+      list_print(mylist);
+}
+list_add_to_back(mylist,60);
+if(strcmp("34->100->32->30->28->26->24->20->15->10->5->60->NULL",listToString(mylist)) == 1)
+  {
+        printf("list_add_to_back : FAILED\n");
+  }
+  else{
+              printf("list_add_to_back : PASSED\n");
+
+  }      
+  list_print(mylist);
+
+//if(list_get_elem_at(mylist,9)!=60){
+  //    printf("add_to_back : FAILED\n");
+//}
+
+  /*if(strcmp("5->10->15->20->22->24->26->28->30->32->34->36->NULL",listToString(mylist)) == 1)
+  {
+        printf("list_add_to_back : FAILED\n");
+  }
   list_print(mylist);
   list_add_to_front(mylist, 10);
   list_add_to_front(mylist, 20);
@@ -19,6 +85,7 @@ int main() {
   list_add_to_front(mylist, 80);
   list_add_to_front(mylist, 90);
   list_add_to_front(mylist, 100);
+
 
   if(strcmp("100->90->80->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
   {
@@ -208,5 +275,6 @@ int main() {
   // list_add_to_back(mylist, 40);
   // list_print(mylist);
   // printf("Index of %d?: %d\n", 40, list_get_index_of(mylist, 40));
+  */
   return 0;
 }
