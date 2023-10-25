@@ -127,15 +127,7 @@ void exsetenv(char *arguments[]) {
 void alarmhandler( int sig){
   kill(child, sig);
 }
-void  ChildProcess(char *arguments[])
-{     
-      execvp(arguments[0],arguments);
-      perror("execvp() failed");
-      exit(1);
-     
-     
-     }
-    
+
 
 void  ParentProcess(char *arguments[], int is_background)
 {
@@ -247,44 +239,7 @@ int main() {
             }
             
 			
-        // 1. Tokenize the command line input (split it on whitespace)
-      /*
-      void tokenize(){
-            
-        int i;
-        //read in first token
-        token = strtok(command_line,delimiters);
-        arguments[0]=token;
-        
-        //for the rest of the input read each word separated by the delimiters into arguments array
-        for(i=1; i < MAX_COMMAND_LINE_ARGS; i++){
-            token = strtok(NULL,delimiters);
-            arguments[i]=token;
-            if(token[0]=='$'){
-                const char* newtoken = token+1;
-                 char* nvar; 
-                nvar = getenv(newtoken);
-                arguments[i]= nvar;
-                printf("%s",arguments[i]);
-                continue;
-                }
-            
-            
-
-            //printf("%s",arguments[i]);
-           
-        }
-         switch(arguments[0]){
-                case "echo" :
-                case "cd":
-                case "pwd":
-                case "exit":
-                case "env":
-                case "setenv":
-
-
-            } 
-        }*/        
+             
         tokenize(command_line, arguments, prompt);
  if (strcmp(arguments[0], "echo") == 0) {
         execho(arguments);
@@ -309,18 +264,6 @@ int main() {
 
 
     
-
-
-        // 2. Implement Built-In Commands
-       
-      //cd 
-      //pwd
-      //echo
-      //exit
-      //env
-      //setenv
-    
-        // 3. Create a child process which will execute the command line input
 
   
         // 4. The parent process should wait for the child to complete unless its a background process
