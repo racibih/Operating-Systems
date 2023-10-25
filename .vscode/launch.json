@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "c:/Users/racib/Downloads/Operating-Systems/project-1--create-a-simple-shell",
-      "program": "c:/Users/racib/Downloads/Operating-Systems/project-1--create-a-simple-shell/build/Release/outRelease",
+      "program": "c:/Users/racib/Downloads/Operating-Systems/project-1--create-a-simple-shell/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
